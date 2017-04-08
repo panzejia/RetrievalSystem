@@ -1,0 +1,54 @@
+<!Doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>科研项目申报信息检索系统</title>
+<style>
+<!--
+#idxlogo {
+    position: relative;
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    
+}
+#indexpage {
+    width: 100%;
+    padding: 0;
+    margin: 20px 0;
+    text-align: center;
+}
+#searchinput {
+    width:500px;
+	height:25px;
+}
+#inputbutton {
+    width:90px;
+	height:35px;
+	background:#EDEDED;
+	font-family:微软雅黑	;
+	text-align:center;
+	text-decoration:none;
+}
+-->
+</style>
+</head>
+<body>
+<div id="idxlogo" >
+	<a href="http://www.iflin.cn:8080/RetrievalSystem">
+	<img src="C:\Users\Jaypan\Desktop\1.png"></a>
+</div>
+<div id="indexpage">
+	<form action="Search" method="get"  >
+		<input id="searchinput" type="text" name="searchResult" value="">
+		<input id="inputbutton" type="submit" value="搜索" />
+	</form>
+	<br><br><br>
+	<form action="SendEmail" method="post" >
+		<p>输入邮箱后可获取最新申报通知</p>
+		<input id="searchinput" type="text" name="mail" value="">
+		<input id="inputbutton" type="submit" value="订阅文章" />
+	</form>
+</div>
+</body>
+</html>
