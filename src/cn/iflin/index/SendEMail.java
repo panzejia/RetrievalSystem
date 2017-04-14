@@ -34,10 +34,10 @@ public class SendEMail extends HttpServlet {
 		sendMail.sendEmail(mail);
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>·¢ËÍÓÊÏä</title>");
+		out.println("<title>ç§‘ç ”ç”³æŠ¥ä¿¡æ¯æ£€ç´¢ç³»ç»Ÿ</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<p> ·¢ËÍ³É¹¦£¡ </p>");
+		out.println("<p> å‘é€æˆåŠŸï¼ </p>");
 		out.println("</body>");
 		out.println("</html>");
 		out.close();
