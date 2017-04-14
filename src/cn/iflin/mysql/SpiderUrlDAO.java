@@ -3,6 +3,10 @@ package cn.iflin.mysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.sql.SQLException;
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 import java.sql.Statement;
 
 public class SpiderUrlDAO {
@@ -20,7 +24,12 @@ public class SpiderUrlDAO {
 	public void addNewUrl(String url,int id) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
 		//通过数据的连接操作数据库
+<<<<<<< HEAD
 		String sql = "INSERT INTO urlmanager(newUrl,UrlId) VALUES (?,?)";
+=======
+		Statement stmt = conn.createStatement();
+		String sql = "INSERT INTO urlmanager(newUrl,id) VALUES (?,?)";
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 		PreparedStatement preStmt=conn.prepareStatement(sql); 
 		preStmt.setString(1, url);
 		preStmt.setInt(2, id);
@@ -31,6 +40,7 @@ public class SpiderUrlDAO {
 			System.out.println("添加成功");
 		}
 	}
+<<<<<<< HEAD
 	
 	public void addAticle(String title,String time ,String context,String url,String articleId) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
@@ -50,4 +60,6 @@ public class SpiderUrlDAO {
 		}
 	}
 	
+=======
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 }

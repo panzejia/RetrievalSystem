@@ -7,9 +7,15 @@ import java.sql.SQLException;
  * 数据库连接
  */
 public class MysqlConnection {
+<<<<<<< HEAD
 	private static final String URL="jdbc:mysql://127.0.0.1:3306/retrievalsystemdb";
 	private static final String USER="root";
 	private static final String PASSWORD="0503";
+=======
+	private static final String URL="jdbc:mysql://127.0.0.1:3306/panzejia_test";
+	private static final String USER="root";
+	private static final String PASSWORD="";
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 	
 	private static Connection conn=null;
 	//使用静态方法，优先运行静态方法

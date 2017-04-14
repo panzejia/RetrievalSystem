@@ -2,6 +2,10 @@ package cn.iflin.mysql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.sql.SQLException;
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;

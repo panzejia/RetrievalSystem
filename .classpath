@@ -13,6 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/c3p0-0.9.1.1.jar"/>
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/commons-codec-1.9.jar"/>
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
@@ -56,5 +57,11 @@
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/slf4j-log4j12-1.7.7.jar"/>
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/IKAnalyzer2012FF_u1.jar"/>
 	<classpathentry kind="lib" path="F:/Project/JSP Workspace/ProjectCode/RetrievalSystem/WebContent/WEB-INF/lib/mail.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Lucene"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Mysql"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Quartz"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spider"/>
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

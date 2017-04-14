@@ -2,11 +2,19 @@ package cn.iflin.lucene;
 
 import java.io.File;
 import java.io.FileFilter;
+<<<<<<< HEAD
+=======
+import java.io.FileReader;
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 import java.io.IOException;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
+<<<<<<< HEAD
+=======
+import org.apache.lucene.document.Field;
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
@@ -18,6 +26,10 @@ import org.apache.lucene.util.Version;
  */
 public class Indexer {
 	private IndexWriter writer;
+<<<<<<< HEAD
+=======
+	@SuppressWarnings("deprecation")
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 	public Indexer(String indexDir) throws IOException {
 		Directory dir = FSDirectory.open(new File(indexDir));
 		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
@@ -51,7 +63,13 @@ public class Indexer {
 
 	private Document getDocument(File f) throws Exception {
 		Document doc = new Document();
+<<<<<<< HEAD
 
+=======
+		doc.add(new Field("文档",new FileReader(f)));
+		doc.add(new Field("文件名",f.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED));
+		doc.add(new Field("路径:",f.getCanonicalPath(),Field.Store.YES,Field.Index.NOT_ANALYZED));
+>>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 		return doc;
 	}
 	
