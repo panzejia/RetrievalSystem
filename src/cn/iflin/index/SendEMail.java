@@ -39,11 +39,18 @@ public class SendEMail extends HttpServlet {
 		
 		out.println("<html>");
 		out.println("<head>");
+<<<<<<< HEAD
 		out.println("<title>发送邮箱</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<p> 发送成功！ </p>");
 		out.println("<p> 发送内容:</p><br>"+text);
+=======
+		out.println("<title>科研申报信息检索系统</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<p> 发送成功！ </p>");
+>>>>>>> f3ff363a0ba16e6563fb1772a0867a2ef87f2707
 		out.println("</body>");
 		out.println("</html>");
 		out.close();
