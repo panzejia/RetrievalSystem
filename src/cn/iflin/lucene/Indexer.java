@@ -26,10 +26,8 @@ import org.apache.lucene.util.Version;
  */
 public class Indexer {
 	private IndexWriter writer;
-<<<<<<< HEAD
-=======
+
 	@SuppressWarnings("deprecation")
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 	public Indexer(String indexDir) throws IOException {
 		Directory dir = FSDirectory.open(new File(indexDir));
 		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);

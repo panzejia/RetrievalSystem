@@ -41,7 +41,7 @@ public class LuceneTest {
 	    r.close();
 	    w.close();
 	 
-	    String querystr = args.length > 0 ? args[0] : "¹ØÓÚ½øÒ»²½ÍêÉÆÊ¡¼¶²ÆÕş¿ÆÑĞÏîÄ¿×Ê½ğ¹ÜÀíµÈÕş²ßµÄÊµÊ©Òâ¼û(ÊÔĞĞ)";
+	    String querystr = args.length > 0 ? args[0] : "å…³äºè¿›ä¸€æ­¥å®Œå–„çœçº§è´¢æ”¿ç§‘ç ”é¡¹ç›®èµ„é‡‘ç®¡ç†ç­‰æ”¿ç­–çš„å®æ–½æ„è§(è¯•è¡Œ)";
 	 
 	    Query q = new QueryParser(Version.LUCENE_40, "title", analyzer).parse(querystr);
 	 

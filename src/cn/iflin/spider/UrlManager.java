@@ -3,44 +3,28 @@ package cn.iflin.spider;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-<<<<<<< HEAD
 
 import cn.iflin.mysql.SpiderUrlDAO;
-=======
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 /*
- * urlÌáÈ¡²¢ÓëmysqlÁ¬½Óµ¼ÈëÁĞ±í
+ * urlæå–å¹¶ä¸mysqlè¿æ¥å¯¼å…¥åˆ—è¡¨
  */
 public class UrlManager extends HttpClient{
 	private ContentTest contentTest = new ContentTest();
 	private int ListNum = 0;
-<<<<<<< HEAD
 	private SpiderUrlDAO spiderUrlDao = new SpiderUrlDAO();
 	/*
-	 * »ñÈ¡¹ã¶«²ÆÕşÌüÁĞ±íÁ´½Ó
+	 * è·å–å¹¿ä¸œè´¢æ”¿å…åˆ—è¡¨é“¾æ¥
 	 */
 	public void getListUrlFromGDCZT(String htmlUrl) throws Exception{
-=======
-	/*
-	 * »ñÈ¡¹ã¶«²ÆÕşÌüÁĞ±íÁ´½Ó
-	 */
-	public void getListUrlFromGDCZT(String htmlUrl){
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
-		//½âÎöHTML×Ö·û´®·µ»ØÒ»¸öDocumentÊµÏÖ  
-		Elements content = super.getHttpClient(htmlUrl).select("div.content").select("a");	//»ñÈ¡Á´½ÓÁĞ±í
+		//è§£æHTMLå­—ç¬¦ä¸²è¿”å›ä¸€ä¸ªDocumentå®ç°
+		Elements content = super.getHttpClient(htmlUrl).select("div.content").select("a");	//è·å–é“¾æ¥åˆ—è¡¨
 		if(content!=null){
 			for(Element element : content){
 				String oldUrl = element.attr("href");
-<<<<<<< HEAD
 				String newUrl = oldUrl.replaceFirst(".", "http://www.gdczt.gov.cn/zwgk/ggtz");
 				
 				spiderUrlDao.addNewUrl(newUrl, ListNum);
 				contentTest.getTextToGDCZT(newUrl);
-=======
-				String newUrl = oldUrl.replaceFirst(".", htmlUrl);
-				contentTest.getTextToGDCZT(newUrl);
-//				addToMysql(newUrl,i);
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 				ListNum++;
 			}
 		}
@@ -48,11 +32,11 @@ public class UrlManager extends HttpClient{
 	
 	
 	/*
-	 * »ñÈ¡¹ã¶«¿ÆÑ§¼¼ÊõÌü
+	 * è·å–å¹¿ä¸œç§‘å­¦æŠ€æœ¯å…
 	 */
 	public void getListUrlFromGDSTC(String htmlUrl){
-		//½âÎöHTML×Ö·û´®·µ»ØÒ»¸öDocumentÊµÏÖ  
-		Elements content = super.getHttpClient(htmlUrl).select("table.p12_l22").select("a");	//»ñÈ¡Á´½ÓÁĞ±í
+		//è§£æHTMLå­—ç¬¦ä¸²è¿”å›ä¸€ä¸ªDocumentå®ç°  
+		Elements content = super.getHttpClient(htmlUrl).select("table.p12_l22").select("a");	//è·å–é“¾æ¥åˆ—è¡¨
 		if(content!=null){
 			for(Element element : content){
 				String oldUrl = element.attr("href");

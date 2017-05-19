@@ -16,8 +16,7 @@
     <servlet-name>SearchIndex</servlet-name>
     <url-pattern>/Search</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>SendEMail</servlet-name>
     <servlet-class>cn.iflin.index.SendEMail</servlet-class>
   </servlet>
@@ -25,5 +24,4 @@
     <servlet-name>SendEMail</servlet-name>
     <url-pattern>/SendEmail</url-pattern>
   </servlet-mapping>
-  
 </web-app>

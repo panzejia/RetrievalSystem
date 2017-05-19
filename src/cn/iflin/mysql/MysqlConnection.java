@@ -4,26 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /*
- * Êı¾İ¿âÁ¬½Ó
+ * æ•°æ®åº“è¿æ¥
  */
 public class MysqlConnection {
-<<<<<<< HEAD
 	private static final String URL="jdbc:mysql://127.0.0.1:3306/retrievalsystemdb";
 	private static final String USER="root";
 	private static final String PASSWORD="0503";
-=======
-	private static final String URL="jdbc:mysql://127.0.0.1:3306/panzejia_test";
-	private static final String USER="root";
-	private static final String PASSWORD="";
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
-	
 	private static Connection conn=null;
-	//Ê¹ÓÃ¾²Ì¬·½·¨£¬ÓÅÏÈÔËĞĞ¾²Ì¬·½·¨
+	//ä½¿ç”¨é™æ€æ–¹æ³•ï¼Œä¼˜å…ˆè¿è¡Œé™æ€æ–¹æ³•
 	static {
 		try {
-			//¼ÓÔØÇı¶¯³ÌĞò
+			//åŠ è½½é©±åŠ¨ç¨‹åº
 			Class.forName("com.mysql.jdbc.Driver");
-			//Á¬½Ó±¾µØÊı¾İ¿â
+			//è¿æ¥æœ¬åœ°æ•°æ®åº“
 			conn =DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -32,7 +25,7 @@ public class MysqlConnection {
 		}
 	}
 	
-	//»ñÈ¡Á¬½Ó²¢·µ»Ø
+	//è·å–è¿æ¥å¹¶è¿”å›
 	public static Connection getConnection (){
 		return conn;
 	}

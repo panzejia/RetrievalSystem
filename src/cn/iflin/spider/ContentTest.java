@@ -1,53 +1,41 @@
 package cn.iflin.spider;
 
+import java.util.Date;
+
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-<<<<<<< HEAD
 import cn.iflin.mysql.SpiderUrlDAO;
 
-=======
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 /*
- * »ñÈ¡ÎÄÕÂÄÚÈİ
+ * è·å–æ–‡ç« å†…å®¹
  */
 public class ContentTest extends HttpClient{
 	/*
-	 * »ñÈ¡¹ã¶«Ê¡²ÆÕşÌüÎÄÕÂÄÚÈİ
+	 * è·å–å¹¿ä¸œçœè´¢æ”¿å…æ–‡ç« å†…å®¹
 	 */
-<<<<<<< HEAD
 	public  void getTextToGDCZT(String htmlUrl) throws Exception{
-=======
-	public  void getTextToGDCZT(String htmlUrl){
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
-		Elements content = super.getHttpClient(htmlUrl).select("div.content");	//»ñÈ¡Á´½ÓÁĞ±í
+		Elements content = super.getHttpClient(htmlUrl).select("div.content");	//è·å–é“¾æ¥åˆ—è¡¨
 		if(content!=null){
 			String title = content.select("h1").text();
 			String time = content.select("span.pub_time").text();
 			String source = content.select("span#source_baidu").text();
-<<<<<<< HEAD
 			String text = content.select("p").text();
-=======
-			String text = content.select("p").html();
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 			System.out.println(
 					"title: "+title+"\n"+
 					"time:  "+time+"\n"+
 					"source:"+source+"\n"+
 					"text: "+text+"\n");
-<<<<<<< HEAD
 			SpiderUrlDAO spiderUrlDao = new SpiderUrlDAO();
 			spiderUrlDao.addAticle(title, time, text,htmlUrl,htmlUrl);
-=======
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 		}
 	}
 	
 	/*
-	 * »ñÈ¡¹ã¶«¿Æ¼¼ÌüÎÄÕÂÄÚÈİ
+	 * è·å–å¹¿ä¸œç§‘æŠ€å…æ–‡ç« å†…å®¹
 	 */
 	public  void getTextToGDSTC(String htmlUrl){
-		Element content = super.getHttpClient(htmlUrl).body();	//»ñÈ¡Á´½ÓÁĞ±í
+		Element content = super.getHttpClient(htmlUrl).body();	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
 		if(content!=null){
 			String title = content.select("div.title").text();
 			String time = content.select("div.time").text();
@@ -58,6 +46,26 @@ public class ContentTest extends HttpClient{
 					"time:  "+time+"\n"+
 					"source:"+source+"\n"+
 					"text: "+text+"\n");
+		}
+	}
+	
+	/*
+	 * è·å–æµ·ç ”æ–‡ç« å†…å®¹
+	 */
+	public  void getTextToHAIYAN(String htmlUrl) throws Exception{
+		Element content = super.getHttpClient(htmlUrl).body();	
+		if(content!=null){
+			String title = content.select("h3.text-center").text();
+			String time = content.select("div.tab-content").select("div.col-md-6").select("span").first().text();
+			String source = content.select("div.tab-content").select("div.col-md-6.text-right").text();
+			String text = content.select("div.row").text();
+			System.out.println(
+					"title: "+title+"\n"+
+					"time:  "+time+"\n"+
+					"source:"+source+"\n"+
+					"text: "+text+"\n");
+			SpiderUrlDAO spiderUrlDao = new SpiderUrlDAO();
+			spiderUrlDao.addAticle(title, time, text,htmlUrl,htmlUrl);
 		}
 	}
 }

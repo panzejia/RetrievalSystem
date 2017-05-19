@@ -9,11 +9,11 @@ public class Action {
 		SpiderUrlDAO url = new SpiderUrlDAO();
 		List<DBModel> gs = g.queryId();
 		for (DBModel dbModel : gs) {
-			System.out.println(dbModel.getId());
+			System.out.println(dbModel.getArticleTtile());
 		}
 			
 		
-		url.addNewUrl("salkdjga", 1);
-		System.out.println(url.getNewUrl());
+//		url.addNewUrl("salkdjga", 1);
+//		System.out.println(url.getNewUrl());
 	}
 }

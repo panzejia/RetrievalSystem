@@ -1,22 +1,33 @@
 package cn.iflin.mysql;
 
 public class DBModel {
-	private Integer id;
-	private String newUrl;
-	public String getNewUrl() {
-		return newUrl;
+	private String articleText;
+	private String articleTtile;
+	private String articleTime;
+	
+	public String getArticleText() {
+		return articleText;
 	}
 
-	public void setNewUrl(String newUrl) {
-		this.newUrl = newUrl;
+	public void setArticleText(String articleText) {
+		this.articleText = articleText;
 	}
 
-	public Integer getId() throws Exception {
-		return id;
+	public String getArticleTtile() {
+		return articleTtile;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setArticleTtile(String articleTtile) {
+		this.articleTtile = articleTtile;
 	}
+
+	public String getArticleTime() {
+		return articleTime;
+	}
+
+	public void setArticleTime(String articleTime) {
+		this.articleTime = articleTime;
+	}
+
 	
 }

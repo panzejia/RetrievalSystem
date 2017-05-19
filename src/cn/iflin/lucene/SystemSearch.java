@@ -3,7 +3,6 @@ package cn.iflin.lucene;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
@@ -14,28 +13,30 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 /*
- * ´Ëº¯ÊıÓÃÀ´½øĞĞ¼ìË÷
+ * æ­¤å‡½æ•°ç”¨æ¥è¿›è¡Œæ£€ç´¢
  */
 
 public class SystemSearch {
-	private ArrayList<Article> aticle;
-//	public static void main(String[] args) {
-//		SystemSearch ss = new SystemSearch();
-//		System.out.println(ss.getSearch("¿ÆÑĞÏîÄ¿"));
-//		for (Article a : ss.getSearch("¿ÆÑĞÏîÄ¿")){
-//			System.out.println(a.getTitle()+"\n"+a.getTime()+"\n"+a.getContent());
-//		}
-//	}
+	private ArrayList<Article> aticles;
+	public static void main(String[] args) {
+		SystemSearch ss = new SystemSearch();
+		System.out.println(ss.getSearch("äººæ–‡"));
+		for (Article a : ss.getSearch("äººæ–‡")){
+			System.out.println(a.getTitle()+"\n"+a.getTime());
+		}
+	}
 	
 	public  ArrayList<Article> getSearch(String querystr)  {
-		// 2.ÇëÇóËÑË÷
-		// ´ÓÊäÈëÖĞ¶ÁÈëËÑË÷ÇëÇó£¬È»ºó¶ÔËü½øĞĞ½âÎö£¬×îºó´´½¨Ò»¸öLuceneÖĞµÄQuery¶ÔÏó¡£
+		// 2.è¯·æ±‚æœç´¢
+		// ä»è¾“å…¥ä¸­è¯»å…¥æœç´¢è¯·æ±‚ï¼Œç„¶åå¯¹å®ƒè¿›è¡Œè§£æï¼Œæœ€ååˆ›å»ºä¸€ä¸ªLuceneä¸­çš„Queryå¯¹è±¡ã€‚
 		ArrayList<Article> result = null;
 		try {
 			result = getResult(querystr);
@@ -57,31 +58,47 @@ public class SystemSearch {
 		System.out.println(fileindex);
 		q = new QueryParser(Version.LUCENE_40, "Title", analyzerIKA).parse(querystr);
 
-		// 3.ËÑË÷
-		// ´´½¨Ò»¸öSearcher¶ÔÏó²¢Ê¹ÓÃÖ®Ç°´´½¨µÄQuery¶ÔÏóÀ´½øĞĞËÑË÷£¬Æ¥Åäµ½µÄÇ°10¸ö½á¹û·â×°ÔÚTopScoreDocCollector¶ÔÏóÀï·µ»Ø¡£
+		// 3.æœç´¢
+		// åˆ›å»ºä¸€ä¸ªSearcherå¯¹è±¡å¹¶ä½¿ç”¨ä¹‹å‰åˆ›å»ºçš„Queryå¯¹è±¡æ¥è¿›è¡Œæœç´¢ï¼ŒåŒ¹é…åˆ°çš„å‰10ä¸ªç»“æœå°è£…åœ¨TopScoreDocCollectorå¯¹è±¡é‡Œè¿”å›ã€‚
 		int hitsPerPage = 100;
 		IndexReader reader = DirectoryReader.open(fileindex);
 		IndexSearcher searcher = new IndexSearcher(reader);
-		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
-		searcher.search(q, collector);
-		ScoreDoc[] hits = collector.topDocs().scoreDocs;
-		System.out.println(hits.length);
-		String result = null;
-//		// 4.´òÓ¡½á¹û
-		 aticle = new ArrayList<Article>();
+		
+		//æŠŠè¿™é‡Œçš„numberæ”¹ä¸ºæ•°æ®åº“ä¸­å­˜å‚¨æ—¶é—´çš„åˆ—
+//		SortField ss = new SortField("Time", Type.INT, false);
+//		Sort sort = new Sort(ss);
+		Sort sort = new Sort(new SortField("Time", SortField.Type.STRING, true));
+		TopDocs topdocs = searcher.search(q, 100);	 
+		searcher.search(q, 10000, sort);
+		ScoreDoc[] hits = topdocs.scoreDocs;
+		
+//		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
+//		searcher.search(q, collector);
+//		ScoreDoc[] hits = collector.topDocs().scoreDocs;
+//		System.out.println(hits.length);
+		
+//		// 4.æ‰“å°ç»“æœ
+		 aticles = new ArrayList<Article>();
 		 
 		String title = null,time = null,context = null,url=null;
 		for (int i = 0; i < hits.length; ++i) {
 			int docId = hits[i].doc;
 			Document d = searcher.doc(docId);
 			url = d.get("Url");
-			System.out.println(url);
+//			System.out.println(url);
 			Article article = new Article(d.get("Title"),d.get("Time"),d.get("Context"));
-			aticle.add(article);
+//			System.out.println(d.get("Title")+d.get("Time"));
+			aticles.add(article);
 		}
-		// ´ËÊ±²»ĞèÒªÔÙ·ÃÎÊÎÄµµ£¬¹Ø±Õreader
+		
+//		for (int i = 0; i < hits.length; i++){
+//			 Document targetDoc = searcher.doc(hits[i].doc);
+//			 System.out.println(targetDoc.get("Title")+targetDoc.get("Time"));
+//		}
+		
+		// æ­¤æ—¶ä¸éœ€è¦å†è®¿é—®æ–‡æ¡£ï¼Œå…³é—­reader
 		reader.close();
-		return aticle;
+		return aticles;
 	}
 	
 	

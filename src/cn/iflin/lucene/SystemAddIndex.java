@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -21,18 +23,18 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import cn.iflin.mysql.MysqlConnection;
 /*
- * ´Ëº¯ÊıÓÃÀ´½«Êı¾İ¿âÖĞµÄÎÄÕÂ±êÌâµÈ½¨Á¢Ë÷Òı²¢´æ´¢ÔÚÎÄ¼ş¼ĞÖĞ
+ * æ­¤å‡½æ•°ç”¨æ¥å°†æ•°æ®åº“ä¸­çš„æ–‡ç« æ ‡é¢˜ç­‰å»ºç«‹ç´¢å¼•å¹¶å­˜å‚¨åœ¨æ–‡ä»¶å¤¹ä¸­
  */
 public class SystemAddIndex {
 		private  void addIndex() throws IOException {
 			Connection conn = MysqlConnection.getConnection();
-			// 1.½¨Á¢Ë÷Òı
-			// ÊµÀı»¯¶ÔÏóÀ´Á¬½ÓÊı¾İ¿â£¬Í¬Ê±ÓÃsqlÓï¾äµ÷ÓÃÊı¾İ¿âÖĞÖ¸¶¨µÄÊı¾İ±í
+			// 1.å»ºç«‹ç´¢å¼•
+			// å®ä¾‹åŒ–å¯¹è±¡æ¥è¿æ¥æ•°æ®åº“ï¼ŒåŒæ—¶ç”¨sqlè¯­å¥è°ƒç”¨æ•°æ®åº“ä¸­æŒ‡å®šçš„æ•°æ®è¡¨
 			String sql = "SELECT * FROM context";
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			
-			/*ÄÚ´æ·½·¨¡£
+			/*å†…å­˜æ–¹æ³•ã€‚
 			StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
 			IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
 			Directory index = new RAMDirectory();
@@ -54,7 +56,7 @@ public class SystemAddIndex {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				// Í³Ò»ÊÍ·ÅÄÚ´æ
+				// ç»Ÿä¸€é‡Šæ”¾å†…å­˜
 				try {				
 					filew.close();
 					rs.close();
@@ -70,8 +72,14 @@ public class SystemAddIndex {
 		
 		private static void addDoc(IndexWriter w, String title, String time, String context,String url) throws IOException {
 			Document doc = new Document();
+			
+			FieldType fieldType = new FieldType();  
+	        fieldType.setIndexed(false);//set æ˜¯å¦ç´¢å¼•  
+	        fieldType.setStored(true);//set æ˜¯å¦å­˜å‚¨  
+	        fieldType.setTokenized(true);//set æ˜¯å¦åˆ†ç±»
+			
 			doc.add(new TextField("Title", title, Field.Store.YES));
-			doc.add(new TextField("Time", time, Field.Store.YES));
+			doc.add(new Field("Time",time, fieldType));
 			doc.add(new TextField("Context", context, Field.Store.YES));
 			doc.add(new TextField("Url", url, Field.Store.YES));
 			w.addDocument(doc);

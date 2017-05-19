@@ -11,45 +11,33 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailTest {
-    public void sendEmail(String mailAdd)  {  
+    public void sendEmail(String mailAdd,String sendText)  {  
         Properties props = new Properties();  
-        // ¿ªÆôdebugµ÷ÊÔ  
+        // å¼€å¯debugè°ƒè¯•  
         props.setProperty("mail.debug", "true");  
-        // ·¢ËÍ·şÎñÆ÷ĞèÒªÉí·İÑéÖ¤  
+        // å‘é€æœåŠ¡å™¨éœ€è¦èº«ä»½éªŒè¯  
         props.setProperty("mail.smtp.auth", "true");  
-        // ÉèÖÃÓÊ¼ş·şÎñÆ÷Ö÷»úÃû  
+        // è®¾ç½®é‚®ä»¶æœåŠ¡å™¨ä¸»æœºå  
         props.setProperty("mail.host", "smtp.163.com");  
-        // ·¢ËÍÓÊ¼şĞ­ÒéÃû³Æ  
+        // å‘é€é‚®ä»¶åè®®åç§°  
         props.setProperty("mail.transport.protocol", "smtp");  
-          
-        // ÉèÖÃ»·¾³ĞÅÏ¢  
+        // è®¾ç½®ç¯å¢ƒä¿¡æ¯  
         Session session = Session.getInstance(props);  
-          
-        // ´´½¨ÓÊ¼ş¶ÔÏó  
+        // åˆ›å»ºé‚®ä»¶å¯¹è±¡  
         Message msg = new MimeMessage(session);  
         try {
-			msg.setSubject("Panzejia ·¢Éä");
-			 // ÉèÖÃÓÊ¼şÄÚÈİ  
-	        msg.setText("title:¹ØÓÚ2017ÄêÅ©Òµ·¢Õ¹ºÍÅ©´å¹¤×÷×¨Ïî×Ê½ğ£¨¡°Èı¸ß¡±Å©Òµ¼°·¢Õ¹Á¸Ê³Éú²ú£©°²ÅÅÇé¿öµÄ¹«Ê¾"
-	        		+ "time:2017-03-31 00:00:00.0content: ¡¡¡¡¸ù¾İÊ¡¼¶²ÆÕş×¨Ïî×Ê½ğ¹ÜÀí°ì·¨µÄÓĞ¹ØÒªÇó£¬"
-	        		+ "ÏÖ½«2017ÄêÅ©Òµ·¢Õ¹ºÍÅ©´å¹¤×÷×¨Ïî×Ê½ğ(¡°Èı¸ß¡±Å©Òµ¼°·¢Õ¹Á¸Ê³Éú²ú)°²ÅÅÇé¿öÓèÒÔ¹«Ê¾(Ïê¼û¸½¼ş)¡£"
-	        		+ "¹«Ê¾ÆÚ×Ô2017Äê3ÔÂ31ÈÕÖÁ4ÔÂ6ÈÕ£¬¹²7Ìì¡£Èç¶Ô¹«Ê¾ÄÚÈİÓĞÒìÒé£¬ÇëÔÚ¹«Ê¾ÆÚÏòÊ¡²ÆÕşÌü¡¢Ê¡Å©ÒµÌü·´Ó³¡£"
-	        		+ "ÒÔ¸öÈËÃûÒå·´Ó³Çé¿öµÄ£¬ÇëÌá¹©ÕæÊµĞÕÃû¡¢ÁªÏµ·½Ê½ºÍ·´Ó³ÊÂÏîÖ¤Ã÷²ÄÁÏµÈ;ÒÔµ¥Î»ÃûÒå·´Ó³Çé¿öµÄ£¬"
-	        		+ "ÇëÌá¹©µ¥Î»ÕæÊµÃû³Æ(¼Ó¸Ç¹«ÕÂ)¡¢ÁªÏµÈË¡¢ÁªÏµ·½Ê½ºÍ·´Ó³ÊÂÏîÖ¤Ã÷²ÄÁÏµÈ¡£ ¡¡¡¡"
-	        		+ "(Ê¡²ÆÕşÌüÁªÏµÈË£ºÒü Ğñ£¬µç»°£º020-83170593) ¡¡¡¡(Ê¡Å©ÒµÌüÁªÏµÈË£ºÁõ ¾ê£¬µç»°£º020-37288209) ¡¡¡¡"
-	        		+ "¸½¼ş£º2017ÄêÅ©Òµ·¢Õ¹ºÍÅ©´å¹¤×÷×¨Ïî×Ê½ğ(¡°Èı¸ß¡±Å©Òµ¼°·¢Õ¹Á¸Ê³Éú²ú)°²ÅÅ±í ¡¡¡¡"
-	        		+ "¹ã¶«Ê¡²ÆÕşÌü ¡¡¡¡"
-	        		+ "2017Äê3ÔÂ28ÈÕ"
-	        		+ " ¸½¼ş£º2017ÄêÅ©Òµ·¢Õ¹ºÍÅ©´å¹¤×÷×¨Ïî×Ê½ğ(¡°Èı¸ß¡±Å©Òµ¼°·¢Õ¹Á¸Ê³Éú²ú)°²ÅÅ±í.xls");  
-	        // ÉèÖÃ·¢¼şÈË  
+			msg.setSubject("Panzejia å‘å°„");
+			 // è®¾ç½®é‚®ä»¶å†…å®¹  
+	        msg.setText(sendText);  
+	        // è®¾ç½®å‘ä»¶äºº  
 	        msg.setFrom(new InternetAddress("jaypans@163.com"));  
 	          
 	        Transport transport = session.getTransport();  
-	        // Á¬½ÓÓÊ¼ş·şÎñÆ÷  
+	        // è¿æ¥é‚®ä»¶æœåŠ¡å™¨  
 	        transport.connect("jaypans", "hongpp");  
-	        // ·¢ËÍÓÊ¼ş  
+	        // å‘é€é‚®ä»¶  
 	        transport.sendMessage(msg, new Address[] {new InternetAddress(mailAdd)});  
-	        // ¹Ø±ÕÁ¬½Ó  
+	        // å…³é—­è¿æ¥  
 	        transport.close();  
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block

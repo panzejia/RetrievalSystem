@@ -8,21 +8,27 @@ import java.net.URL;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 /*
- * »ñÈ¡Ò³ÃæÁ¬½Ó
+ * è·å–é¡µé¢è¿æ¥
  */
 public class HttpClient {
 	
 	
 	/*
-	 * Á¬½ÓÖ÷º¯Êı
-	 * return string (Ò³ÃæÄÚÈİ)
+	 * è¿æ¥ä¸»å‡½æ•°
+	 * return string (é¡µé¢å†…å®¹)
 	 */
 	public Document getHttpClient(String htmlUrl){
 		Document doc = null;
 	    try {
-	    	//ÒòÎª³öÏÖ±àÂëÎÊÌâ£¬Èç´Ë´¦Àí¿É½â¾ö
-	    	System.out.println("ÏìÓ¦£º " + htmlUrl);
-			doc = Jsoup.parse(new URL(htmlUrl).openStream(),"utf-8",htmlUrl);
+	    	//å› ä¸ºå‡ºç°ç¼–ç é—®é¢˜ï¼Œå¦‚æ­¤å¤„ç†å¯è§£å†³
+	    	System.out.println("å“åº”ï¼š " + htmlUrl);
+//			doc = Jsoup.connect(htmlUrl)
+//	                   .data("query", "Java")
+//	                   .userAgent("Mozilla")
+//	                   .cookie("auth", "token")
+//	                   .timeout(20000)
+//	                   .get();
+	    	doc = Jsoup.parse(new URL(htmlUrl).openStream(),"utf-8",htmlUrl);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

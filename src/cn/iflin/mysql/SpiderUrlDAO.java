@@ -3,16 +3,12 @@ package cn.iflin.mysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
-=======
-import java.sql.SQLException;
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 import java.sql.Statement;
 
 public class SpiderUrlDAO {
 	public String getNewUrl() throws Exception{
 		Connection conn = MysqlConnection.getConnection();
-		//通过数据的连接操作数据库
+		//閫氳繃鏁版嵁鐨勮繛鎺ユ搷浣滄暟鎹簱
 		Statement stmt = conn.createStatement();
 		ResultSet result =stmt.executeQuery("select * from urlmanager where id=(select max(id) from urlmanager) ");
 		String url = "";
@@ -23,28 +19,22 @@ public class SpiderUrlDAO {
 	}
 	public void addNewUrl(String url,int id) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
-		//通过数据的连接操作数据库
-<<<<<<< HEAD
+		//通閫氳繃鏁版嵁鐨勮繛鎺ユ搷浣滄暟鎹簱
 		String sql = "INSERT INTO urlmanager(newUrl,UrlId) VALUES (?,?)";
-=======
-		Statement stmt = conn.createStatement();
-		String sql = "INSERT INTO urlmanager(newUrl,id) VALUES (?,?)";
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 		PreparedStatement preStmt=conn.prepareStatement(sql); 
 		preStmt.setString(1, url);
 		preStmt.setInt(2, id);
 		int result=preStmt.executeUpdate();
 		if(result!=1){
-			System.out.println("添加失败");
+			System.out.println("娣诲姞澶辫触");
 		}else{
-			System.out.println("添加成功");
+			System.out.println("娣诲姞鎴愬姛");
 		}
 	}
-<<<<<<< HEAD
 	
 	public void addAticle(String title,String time ,String context,String url,String articleId) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
-		//通过数据的连接操作数据库
+		//閫氳繃鏁版嵁鐨勮繛鎺ユ搷浣滄暟鎹簱
 		String sql = "INSERT INTO context(Title,Time,Context,Url,AticleId) VALUES (?,?,?,?,?)";
 		PreparedStatement preStmt=conn.prepareStatement(sql); 
 		preStmt.setString(1, title);
@@ -54,12 +44,10 @@ public class SpiderUrlDAO {
 		preStmt.setString(5, articleId);
 		int result=preStmt.executeUpdate();
 		if(result!=1){
-			System.out.println("添加失败");
+			System.out.println("娣诲姞澶辫触");
 		}else{
-			System.out.println("添加成功");
+			System.out.println("娣诲姞鎴愬姛");
 		}
 	}
 	
-=======
->>>>>>> b0b06a132e58e9db6e7da7f4e24a56b7a47b3128
 }

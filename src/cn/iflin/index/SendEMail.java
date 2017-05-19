@@ -3,6 +3,7 @@ package cn.iflin.index;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,17 +28,22 @@ public class SendEMail extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
+		
+
 		PrintWriter out = response.getWriter();
 		String mail = request.getParameter("mail");
-		System.out.println(mail);
+		String text = request.getParameter("context");;
 		JavaMailTest sendMail = new JavaMailTest();
-		sendMail.sendEmail(mail);
+		sendMail.sendEmail(mail,text);
+//		System.out.println(text);
+		
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>·¢ËÍÓÊÏä</title>");
+		out.println("<title>å‘é€é‚®ç®±</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<p> ·¢ËÍ³É¹¦£¡ </p>");
+		out.println("<p> å‘é€æˆåŠŸï¼ </p>");
+		out.println("<p> å‘é€å†…å®¹:</p><br>"+text);
 		out.println("</body>");
 		out.println("</html>");
 		out.close();
