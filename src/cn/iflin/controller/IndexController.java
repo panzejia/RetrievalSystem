@@ -5,9 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.iflin.server.GetArticles;
-import cn.iflin.server.SystemSearch;
+import cn.iflin.server.SearchOperating;
+import cn.iflin.server.SearchOperating.SystemSearch;
 /**
  * 用户管理
  * 
@@ -15,25 +18,25 @@ import cn.iflin.server.SystemSearch;
  */
 @Controller
 public class IndexController {
-
-    @RequestMapping("")
-    public String Create(Model model) {
-        return "create";
+    @RequestMapping("index.html")
+    public String index1(Model model) {
+    	GetArticles artile = new GetArticles();
+    	model.addAttribute("articles", artile.getArticle());
+        return "forward:index1.jsp";
     }
-
-    @RequestMapping("/getarticle")
-    public String Save(@ModelAttribute("a") GetArticles artile,Model model) { // user:视图层传给控制层的表单对象；model：控制层返回给视图层的对象
-        model.addAttribute("articles", artile.getArticle());
-        System.out.println(artile.getArticle().get(0).getArticleTtile());
-        return "findall";
+    @RequestMapping("")
+    public String index2(Model model) {
+    	GetArticles artile = new GetArticles();
+    	model.addAttribute("articles", artile.getArticle());
+        return "forward:index1.jsp";
     }
     
-    @RequestMapping("/getresult")
-    public String getResult( HttpServletRequest request,Model model) { // user:视图层传给控制层的表单对象；model：控制层返回给视图层的对象
-    	String searchResult = request.getParameter("searchResult");  
-    	SystemSearch getResult = new SystemSearch();
-    	model.addAttribute("results", getResult.getSearch(searchResult));
-    	System.out.println(getResult.getSearch(searchResult).get(0).getTitle());
+    @RequestMapping(value="/getresult",method=RequestMethod.GET)
+    public String getResult( @RequestParam("sw") String keyword,Model model) { // user:视图层传给控制层的表单对象；model：控制层返回给视图层的对象
+    	SystemSearch getResult =new SystemSearch();
+    	model.addAttribute("results", getResult.getSearch(keyword));
+    	System.out.println("ok");
         return "result";
     }
+    
 }

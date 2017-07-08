@@ -4,7 +4,7 @@ public class DBModel {
 	private String articleText;
 	private String articleTtile;
 	private String articleTime;
-	
+	private String articleId;
 	public String getArticleText() {
 		return articleText;
 	}
@@ -29,5 +29,11 @@ public class DBModel {
 		this.articleTime = articleTime;
 	}
 
-	
+	public String getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(String articleId) {
+		this.articleId = articleId;
+	}
 }

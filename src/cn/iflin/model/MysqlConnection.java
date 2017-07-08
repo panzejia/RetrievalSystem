@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class MysqlConnection {
 	private static final String URL="jdbc:mysql://127.0.0.1:3306/retrievalsystemdb";
 	private static final String USER="root";
-	private static final String PASSWORD="4aEssOrscB";
+	private static final String PASSWORD="0503";
 	private static Connection conn=null;
 	//使用静态方法，优先运行静态方法
 	static {

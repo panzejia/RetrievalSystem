@@ -4,10 +4,12 @@ public class ArticleModel {
 	private String title;
 	private String time;
 	private String content;
-	public ArticleModel(String title,String time,String content){
+	private String articleId;
+	public ArticleModel(String title,String time,String content,String articleId){
 		this.title=title;
 		this.time=time;
 		this.content=content;
+		this.articleId=articleId;
 	}
 	public String getTitle() {
 		return title;
@@ -20,5 +22,7 @@ public class ArticleModel {
 	public String getContent() {
 		return content;
 	}
-
+	public String getArticleId() {
+		return articleId;
+	}
 }
