@@ -73,9 +73,9 @@ public class LuceneOperating {
 	
 	
 	/**
-	 * 将数据库中所有内容添加索引
+	 * 3将数据库中所有内容添加索引
 	 */
-	private  void addAllIndex() throws IOException {
+	private static void addAllIndex() throws IOException {
 		Connection conn = MysqlConnection.getConnection();
 		// 1.建立索引
 		// 实例化对象来连接数据库，同时用sql语句调用数据库中指定的数据表
@@ -92,7 +92,8 @@ public class LuceneOperating {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				addDoc(filew,  rs.getString(1) + "", rs.getString(2) + "", rs.getString(3) + "", rs.getString(4) + "",rs.getString(5));
+				System.out.println(rs.getString("Title"));
+				addDoc(filew,  rs.getString("AticleId") + "", rs.getString("Title") + "", rs.getString("Time") + "",rs.getString("Context")+"",rs.getString("Url")+"",rs.getString("Source"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +111,10 @@ public class LuceneOperating {
 			}
 		}
 	}
-	private static void addDoc(IndexWriter w, String articleId,String title, String time, String context,String url) throws IOException {
+	public static void main(String[] args) throws IOException {
+		addAllIndex();
+	}
+	private static void addDoc(IndexWriter w, String articleId,String title, String time, String context,String url,String sourceName) throws IOException {
 		Document doc = new Document();
 		FieldType fieldType = new FieldType();  
 	    fieldType.setIndexed(false);//set 是否索引  
@@ -125,6 +129,7 @@ public class LuceneOperating {
 		doc.add(new Field("Time",time, fieldType));
 		doc.add(new TextField("Context", context,Field.Store.YES));
 		doc.add(new TextField("Url", url, Field.Store.YES));
+		doc.add(new Field("Source", sourceName,articleIdType));
 		w.addDocument(doc);
 	}
 }

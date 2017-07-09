@@ -1,4 +1,4 @@
-body{
+﻿body{
     margin: 0;
     padding: 0;
     font-size: 14px;
@@ -67,18 +67,17 @@ body, div, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
     color:#fff;}
 
 .foot{width:100%;
-    position:absolute;
     bottom:10px;}
 .foot>.link{
     text-align:center;
     margin-bottom:10px;}
 .foot>.link>a{
     font-size:12px;
-    font-family:"����";
+    font-family: "Century Gothic","Microsoft yahei";
     text-decoration:underline;}
 .copyright{
     text-align:center;}
 p,p>a{
     font-size:12px;
-    font-family:"����";
+    font-family: "Century Gothic","Microsoft yahei";
     color:#666;}

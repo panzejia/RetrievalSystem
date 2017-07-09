@@ -1,8 +1,7 @@
 package cn.iflin.spider;
-import java.util.Date;
-
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 
 /*
  * 获取文章内容
@@ -24,7 +23,7 @@ public class ContentTest extends HttpClient{
 					"source:"+source+"\n"+
 					"text: "+text+"\n");
 			SpiderUrlDAO spiderUrlDao = new SpiderUrlDAO();
-			spiderUrlDao.addAticle(title, time, text,htmlUrl,htmlUrl);
+			spiderUrlDao.addAticle(title, time, text,htmlUrl);
 		}
 	}
 	
@@ -62,7 +61,7 @@ public class ContentTest extends HttpClient{
 					"source:"+source+"\n"+
 					"text: "+text+"\n");
 			SpiderUrlDAO spiderUrlDao = new SpiderUrlDAO();
-			spiderUrlDao.addAticle(title, time, text,htmlUrl,htmlUrl);
+			spiderUrlDao.addAticle(title, time, text,htmlUrl);
 		}
 	}
 }

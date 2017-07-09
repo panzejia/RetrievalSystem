@@ -75,7 +75,7 @@ public class SearchOperating {
 			for (int i = 0; i < hits.length; ++i) {
 				int docId = hits[i].doc;
 				Document d = searcher.doc(docId);
-				article = new ArticleModel(d.get("Title"),d.get("Time"),d.get("Context"),d.get("ArticleId"));
+				article = new ArticleModel(d.get("Title"),d.get("Time"),d.get("Context"),d.get("ArticleId"),d.get("Source"));
 			}
 			// 此时不需要再访问文档，关闭reader
 			reader.close();
@@ -102,12 +102,8 @@ public class SearchOperating {
 			}
 			return result;
 		}
-		
-		
 		private  ArrayList<ArticleModel>  getResult(String querystr)throws IOException, ParseException{
 			Query q = null;
-
-			
 			Analyzer analyzerIKA = new IKAnalyzer();
 			Directory fileindex = FSDirectory.open(new File("C:\\LuceneIndex"));
 			System.out.println(fileindex);
@@ -131,7 +127,7 @@ public class SearchOperating {
 				int docId = hits[i].doc;
 				Document d = searcher.doc(docId);
 				url = d.get("Url");
-				ArticleModel article = new ArticleModel(d.get("Title"),d.get("Time"),d.get("Context"),d.get("ArticleId"));
+				ArticleModel article = new ArticleModel(d.get("Title"),d.get("Time"),d.get("Context"),d.get("ArticleId"),d.get("Source"));
 				aticles.add(article);
 			}
 			// 此时不需要再访问文档，关闭reader

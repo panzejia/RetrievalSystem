@@ -8,6 +8,11 @@ import java.sql.Statement;
 import cn.iflin.model.MysqlConnection;
 
 public class SpiderUrlDAO {
+	/**
+	 * 获取链接
+	 * @return
+	 * @throws Exception
+	 */
 	public String getNewUrl() throws Exception{
 		Connection conn = MysqlConnection.getConnection();
 		//通过数据的连接操作数据库
@@ -19,6 +24,12 @@ public class SpiderUrlDAO {
 		}
 		return url;
 	}
+	/**
+	 * 添加新连接
+	 * @param url
+	 * @param id
+	 * @throws Exception
+	 */
 	public void addNewUrl(String url,int id) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
 		//ͨ通过数据的连接操作数据库
@@ -34,7 +45,7 @@ public class SpiderUrlDAO {
 		}
 	}
 	
-	public void addAticle(String title,String time ,String context,String url,String articleId) throws Exception{
+	public void addAticle(String title,String time ,String context,String url) throws Exception{
 		Connection conn = MysqlConnection.getConnection();
 		//通过数据的连接操作数据库
 		String sql = "INSERT INTO context(AticleId,Title,Time,Context,Url) VALUES (NULL,?,?,?,?)";

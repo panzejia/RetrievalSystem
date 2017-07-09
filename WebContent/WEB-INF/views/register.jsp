@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>课题部落--用户注册</title>
+	<title>课题部落--测试版--用户注册</title>
 	<script language="JavaScript" type="text/JavaScript" src="js/jquery-1.6.1.js"></script>
 	<script language="JavaScript" type="text/JavaScript" src="js/jquery.validate.min.js"></script>
 	<script language="JavaScript" type="text/JavaScript" src="js/jquery.metadata.js"></script>

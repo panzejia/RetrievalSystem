@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; UTF-8">
-<title>课题部落--注册成功</title>
+<title>课题部落--测试版--注册成功</title>
 <link rel="stylesheet" type="text/css" href="css/login_1.css"/>
 <link rel="stylesheet" type="text/css" href="css/login_2.css"/>
 <style>

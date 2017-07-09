@@ -4,6 +4,8 @@ package cn.iflin.spider;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import cn.iflin.spider.util.SpiderUrlDAO;
+
 /*
  * url提取并与mysql连接导入列表
  */

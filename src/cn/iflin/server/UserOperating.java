@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import cn.iflin.model.MysqlConnection;
-
+/**
+ * 实现对用户的操作
+ * @author Jaypan
+ *
+ */
 public class UserOperating {
 	private static Statement st;
 	private static Connection conn=null;

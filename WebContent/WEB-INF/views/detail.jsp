@@ -1,31 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="getarticle" class="cn.iflin.server.SystemGetArticle" scope="application"/>
+<jsp:useBean id="getarticle" class="cn.iflin.server.SearchOperating" scope="application"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/detail.css" />
+<link rel="stylesheet" type="text/css" href="css/result.css" />
 <title>${result.getTitle()}--课题部落</title>
 </head>
 <body>
-<div id="header">
-	<h1>申报详情</h1>
-</div>
-<div class="area">
-	<div id="nav">
-		时间：${result.getTime()}
-		类别：计算机
-		要求：
+	<div class="top">
+		<ul>
+			<li class="topli">
+			<%	
+			if(session.getAttribute("username")==null){
+				out.print("<a class=\"topli\" href=\"login\">登陆</a>");
+			}else{
+				out.print("<a class=\"topli\" href=\"personal\">"+session.getAttribute("username")+"</a>");
+			} %>
+			</li>
+		</ul>
 	</div>
-
-	<div id="section">
-		<h2 style="text-align:center">${result.getTitle()}</h2>
-		<a>${result.getContent()}</a>
+	<div class="idxlogo" >
+		<a href="index.html">
+		<img src="images/logo/logo.png"  width="270" height="129"></a>
 	</div>
-</div>
-<div class="foot">
-	课题部落
-</div>
+	<div class="resultArea" style=" text-align:center;">
+		<div style="color:#000000;font-size:25px;" >
+			${result.getTitle()}
+		</div>
+		<div style="color:#505050;font-size:20px;" >
+			发布时间：${result.getTime()}
+		</div>
+	
+		<div class="article" style="font-family: 微软雅黑;font-size: 16px; text-align:left;">
+			${result.getContent()}
+		</div>
+	</div>
+	
 </body>
 </html>

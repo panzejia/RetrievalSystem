@@ -4,7 +4,7 @@
     <%@ page import="java.sql.ResultSet" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head><title>我的个人信息</title>
+<head><title>课题部落 --测试版--我的个人信息</title>
 <link rel="stylesheet" type="text/css" href="css/user_index.css" />
 </head>
 <body>  
@@ -12,7 +12,7 @@
 	<li><a href="index.html">主页</a></li>
      </ul>  
 	<div class="pic">
-	<img src="images/logo/logo.png">
+	<img src="images/logo/logo.png"  width="270" height="129">
 	</div>
 	<div class="resultArea">
 		<div class="result">
