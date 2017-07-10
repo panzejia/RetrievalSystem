@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="css/result.css" />
-<title>${result.getTitle()}--课题部落</title>
+<title>${result.articleTtile}--课题部落</title>
 </head>
-<body>
+<body style="width:970px; margin:0 auto;">
 	<div class="top">
 		<ul>
 			<li class="topli">
@@ -27,14 +27,14 @@
 	</div>
 	<div class="resultArea" style=" text-align:center;">
 		<div style="color:#000000;font-size:25px;" >
-			${result.getTitle()}
+			${result.articleTtile}
 		</div>
 		<div style="color:#505050;font-size:20px;" >
-			发布时间：${result.getTime()}
+			发布时间：${result.articleTime}
 		</div>
 	
 		<div class="article" style="font-family: 微软雅黑;font-size: 16px; text-align:left;">
-			${result.getContent()}
+			${result.articleText}
 		</div>
 	</div>
 	

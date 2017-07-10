@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/index.css" />
 <title>课题部落 --测试版</title>
 </head>
-<body style="width:900px; margin:0 auto;">
+<body style="width:970px; margin:0 auto;">
 <div >
 	<div class="top">
 		<ul>
@@ -40,8 +40,8 @@
         </div>
     </div>
 </div>
-<div class="foot" style="width:900px;height:300px;margin-top: 150px">
-    <div class="container"style="width:900px;">
+<div class="foot" style="width:970px;height:300px;margin-top: 150px">
+    <div class="container"style="width:970px;">
 	<div class="row">
 	<c:forEach items="${articles}" var="article">
   		<div class="col-md-4">
@@ -52,6 +52,8 @@
 	</div>
    </div>
 </div>
+<div style="margin:0px auto;text-align: center;">
+	<p>Copyright©2017 - 检索小队 版权所有</p>
 </div>
 </body>
 </html>

@@ -35,7 +35,6 @@ body, div, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
 }
 .resultArea {
 	padding: 30px;
-	width:970px;
 	margin:0 auto; 
 	background: #F7F7F7;
     	border-bottom: 1px solid #E0E0E0;
@@ -43,7 +42,7 @@ body, div, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
 }
 
 .result {
-	height:80px;
+	height: 80px;
 	width:800px;
 	margin:0 auto; 	
 }

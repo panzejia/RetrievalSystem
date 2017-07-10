@@ -35,7 +35,6 @@ public class IndexController {
     public String getResult( @RequestParam("sw") String keyword,Model model) { // user:视图层传给控制层的表单对象；model：控制层返回给视图层的对象
     	SystemSearch getResult =new SystemSearch();
     	model.addAttribute("results", getResult.getSearch(keyword));
-    	System.out.println("ok");
         return "result";
     }
     @RequestMapping(value="/articles.html")

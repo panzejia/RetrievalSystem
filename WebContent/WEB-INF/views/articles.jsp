@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/result.css" />
 	<title>课题部落 --测试版--最新30条申报信息</title>
 </head>
-<body>
+<body style="width:970px; margin:0 auto;">
 	<div class="top">
 		<ul>
 			<li class="topli">

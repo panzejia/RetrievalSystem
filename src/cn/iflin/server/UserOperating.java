@@ -1,9 +1,17 @@
 package cn.iflin.server;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+import org.python.core.PyFunction;
+import org.python.core.PyInteger;
+import org.python.core.PyObject;
+import org.python.core.PyString;
+import org.python.util.PythonInterpreter;
 
 import cn.iflin.model.MysqlConnection;
 /**
@@ -20,7 +28,6 @@ public class UserOperating {
         {
         	conn = MysqlConnection.getConnection();
             st = conn.createStatement();
-            System.out.println("ok");
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -55,7 +62,6 @@ public class UserOperating {
         try
         {
             while(result.next()) {
-                System.out.println(result.getString(1)+"   "+result.getString(2)+"   "+result.getString(3)+"   "+result.getString(4)+"   "+result.getString(5));
             }
         } catch (SQLException e)
         {
@@ -74,9 +80,9 @@ public class UserOperating {
             } 
     }
     //增加新的用户记录到数据表
-    public void executeADD(String username,String password,String email,String phone){
+    public void executeADD(String username,String password,String email,String phone,String realname,String workspace){
     	try{
-            String sql = "INSERT userinformation VALUE(NULL,'"+username+"','"+password+"','"+email+"','"+phone+"')";
+            String sql = "INSERT userinformation VALUE(NULL,'"+username+"','"+password+"','"+email+"','"+phone+"','"+realname+"','"+workspace+"',NULL,NULL)";
             st.executeUpdate(sql);
             }catch(SQLException e1) {    
                 // TODO Auto-generated catch block    
@@ -92,5 +98,24 @@ public class UserOperating {
                 // TODO Auto-generated catch block    
                 e1.printStackTrace();   
             } 
+    }
+    
+    /**
+     * 将真实姓名和工作单位传入python文件中进行爬取其相关内容
+     * @param realname
+     * @param workspace
+     */
+    public static void addInfo(String realname,String workspace){
+    	System.out.println("开始");
+		try {
+            //需传入的参数
+            //设置命令行传入参数
+            String[] args1 = new String[] { "python", "F:\\addinfo.py", realname, workspace};
+            Process pr = Runtime.getRuntime().exec(args1);
+            pr.waitFor();
+            System.out.println("end");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -110,8 +110,20 @@ $().ready(function() {
                 <input type="text" id="phone"   name="phone" class="form-control"  placeholder="手机" />
             </div>
         </div>
+        <div class="form-group">
+            <div class="input-group" >
+                <span class="input-group-addon">真实姓名</span>
+                <input type="text" id="realname"   name="realname" class="form-control"  placeholder="姓名" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group" >
+                <span class="input-group-addon">工作单位</span>
+                <input type="text" id="workspace"   name="workspace" class="form-control"  placeholder="工作单位" />
+            </div>
+        </div>
         <div class="form-group" >
-             <input type="submit" value="注册"/>
+             <input class="btn btn-primary form-control" style="margin: 0 auto;" type="submit" value="注册"/>
         </div>
     </form>
     

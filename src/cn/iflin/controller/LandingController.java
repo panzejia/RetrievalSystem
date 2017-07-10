@@ -35,14 +35,23 @@ public class LandingController {
 	 * @return
 	 */
 	@RequestMapping("/registerAction")
-	public String add(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("email") String email, @RequestParam("phone") String phone){
+	public String add(@RequestParam("username") String username, @RequestParam("password") String password,
+			@RequestParam("email") String email, @RequestParam("phone") String phone,
+			@RequestParam("realname") String realname,@RequestParam("workspace") String workspace){
+		class MyThread extends Thread {  
+			public void run() {  
+				UserOperating.addInfo(realname, workspace);
+			} 
+		}
 //		获取提交的表单数据并传入到数据库中，并返回注册成功界面
-		System.out.println(username+password);
-		UserBean u=new UserBean(username,password,email,phone);
+		UserBean u=new UserBean(username,password,email,phone,realname,workspace);
 		UserOperating c=new UserOperating();		
-		c.executeADD(u.getUsername(),u.getPassword(), u.getEmail(), u.getPhone());
+		c.executeADD(u.getUsername(),u.getPassword(), u.getEmail(), u.getPhone(),u.getRealname(),u.getWorkspace());
+		MyThread myThread1 = new MyThread();  
+		myThread1.start();  
 		return "registersuccess";
 	}
+	
 	/**
 	 * 判断用户名是否存在，若是则返回错误信息	bug
 	 * @param name
@@ -53,10 +62,8 @@ public class LandingController {
 		//判断用户名是否存在，若是则返回错误信息
 		UserOperating c = new UserOperating();
 		ResultSet result = c.select();
-		System.out.println(name);
 		try {
 			while(result.next()){
-				System.out.println(result.getString(2));
 				if(name.equals(result.getString(2))){
 					 return "false";
 				}else{
@@ -84,8 +91,7 @@ public class LandingController {
 		ResultSet result = c.select();			
 		try {
 			while (result.next()) {
-				System.out.println(result.getString(2)+result.getString(3));
-				if (username.equals(result.getString(2)) && password.equals(result.getString(3))) {
+				if (username.equals(result.getString("username")) && password.equals(result.getString("password"))) {
 					request.getSession().setAttribute("username",result.getString(2));
 					return "forward:index.jsp";
 				} else {
@@ -99,6 +105,7 @@ public class LandingController {
 		//检查用户名密码错误时，应弹出错误提示窗口并跳转回原页面
 		return "login";
     }
+
 	
 	@RequestMapping("/logout")
 	public void logout(HttpServletRequest request,HttpServletResponse response){		

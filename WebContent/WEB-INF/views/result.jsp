@@ -32,12 +32,12 @@
 	<c:forEach items="${results}" var="result">
 		<div class="result">
 			<div class="first">
-				<a class="title" href="view?articleid=${result.getArticleId()}" target="_blank">${result.getTitle()}</a>
+				<a class="title" href="view?articleid=${result.articleId}" target="_blank">${result.articleTtile}</a>
 			</div>
 			<div class="second">
 				<a class="source">来源：</a>
-				<a class="source" href="http://www.baidu.com target="_blank">${result.getSource()}</a>
-				<a class="time">发布时间：${result.getTime()}</a>
+				<a class="source" href="http://www.baidu.com target="_blank">${result.articleSource}</a>
+				<a class="time">发布时间：${result.articleTime}</a>
 			</div>
 		</div>
 	</c:forEach>
