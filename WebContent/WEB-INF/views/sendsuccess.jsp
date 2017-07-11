@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; UTF-8">
-<title>课题部落--测试版--注册成功</title>
+<title>课题部落--测试版--发送成功</title>
 <link rel="stylesheet" type="text/css" href="css/login_1.css"/>
 <link rel="stylesheet" type="text/css" href="css/login_2.css"/>
 <style>
@@ -22,9 +22,9 @@
 <!-- 注册成功后的跳转页面 -->
 <div class="form-group" style="text-align: center;margin: 250px auto;">
 	<h1 style="font-size: 2rem;">课题部落</h1>
-	<h2 style="font-size: 1.7rem;">注册成功！</h2>
+	<h2 style="font-size: 1.7rem;">邮件发送成功！</h2>
 	<h2 style="font-size: 1.5rem;">请到您的邮箱进行激活...</h2>
-	<h2 style="font-size: 1.5rem;">正在返回登陆页面...</h2>
+	<h2 style="font-size: 1.5rem;">正在返回原页面...</h2>
 	<span style="font-size: 1.5rem;" id="totalSecond">3</span>
 </div>
 <script language="javascript" type="text/javascript"> 
@@ -39,7 +39,7 @@ if (navigator.appName.indexOf("Explorer") > -1)  {
 setInterval("redirect()", 1000); 
 function redirect() { 
 if (second < 0) { 
-    location.href = 'login.html'; 
+    location.href = 'personal'; 
 } else { 
     if (navigator.appName.indexOf("Explorer") > -1) { 
         document.getElementById('totalSecond').innerText = second--; 

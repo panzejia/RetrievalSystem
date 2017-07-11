@@ -17,6 +17,14 @@ $().ready(function() {
     	rules:{
     		email:{
     			required:true,
+    			remote:{
+    				type:"POST",
+    	               url:"CheckName",             
+    	               dataType: "json",
+    	               data:{
+    	                 username:function(){return $("#email").val();}
+    	               } 
+    			},
     			email:true
     		},
     		phone:{
@@ -80,9 +88,9 @@ $().ready(function() {
 			<h2 style="font-size: 1.7rem;">注册</h2>
         </div>
         <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon">用户名</span>
-                <input type="text" class="form-control" name="username" id="username" placeholder="用户名" />
+            <div class="input-group"style="margin: 0 auto;">
+                <span class="input-group-addon">邮箱</span>
+                <input type="text" id="email" name="email" class="form-control"  placeholder="电子邮箱" />
             </div>
         </div>
         <div class="form-group">
@@ -97,13 +105,6 @@ $().ready(function() {
                 <input type="password" id="repeatpassword" name="repeatpassword" class="form-control" placeholder="确认密码" />
             </div>
         </div>
-		<div class="form-group">
-            <div class="input-group"style="margin: 0 auto;">
-                <span class="input-group-addon">邮箱</span>
-                <input type="text" id="email" name="email" class="form-control"  placeholder="电子邮箱" />
-            </div>
-        </div>
-
 		<div class="form-group">
             <div class="input-group" >
                 <span class="input-group-addon">手机</span>
@@ -131,7 +132,7 @@ $().ready(function() {
 </div>
 <script type="application/javascript">
     setTimeout(function() {
-        document.getElementById("username").focus();
+        document.getElementById("email").focus();
     }, 10);
 </script>
 <!--[if IE]>

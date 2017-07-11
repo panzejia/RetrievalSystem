@@ -13,10 +13,10 @@
 		<ul>
 			<li class="topli">
 			<%	
-			if(session.getAttribute("username")==null){
+			if(session.getAttribute("realname")==null){
 				out.print("<a class=\"topli\" href=\"login\">登陆</a>");
 			}else{
-				out.print("<a class=\"topli\" href=\"personal\">"+session.getAttribute("username")+"</a>");
+				out.print("<a class=\"topli\" href=\"personal\">"+session.getAttribute("realname")+"</a>");
 			} %>
 			</li>
 		</ul>

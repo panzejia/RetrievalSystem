@@ -5,22 +5,18 @@ package cn.iflin.model;
  *
  */
 public class UserBean {
-	private String username;
+	private String userid;
 	private String password;
 	private String email;
 	private String phone;
 	private String realname;
 	private String workspace;
-	public UserBean(String username,String password,String email,String phone,String realname,String workspace){
-		this.username=username;
+	public UserBean(String password,String email,String phone,String realname,String workspace){
 		this.password=password;
 		this.email=email;
 		this.phone=phone;
 		this.realname=realname;
 		this.workspace=workspace;
-	}
-	public String getUsername() {
-		return username;
 	}
 	public String getPassword() {
 		return password;
@@ -36,5 +32,11 @@ public class UserBean {
 	}
 	public String getWorkspace() {
 		return workspace;
+	}
+	public void setUserId(String userid){
+		this.userid=userid;
+	}
+	public String getUserId(){
+		return userid;
 	}
 }

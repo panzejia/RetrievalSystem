@@ -7,7 +7,7 @@ import java.sql.SQLException;
  * 数据库连接
  */
 public class MysqlConnection {
-	private static final String URL="jdbc:mysql://127.0.0.1:3306/retrievalsystemdb";
+	private static final String URL="jdbc:mysql://127.0.0.1:3306/retrievalsystemdb?autoReconnect=true";
 	private static final String USER="root";
 	private static final String PASSWORD="0503";
 	private static Connection conn=null;

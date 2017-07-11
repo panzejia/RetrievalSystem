@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.iflin.model.UserBean;
+import cn.iflin.server.MailServer;
 import cn.iflin.server.UserOperating;
 
 @Controller
@@ -35,7 +36,7 @@ public class LandingController {
 	 * @return
 	 */
 	@RequestMapping("/registerAction")
-	public String add(@RequestParam("username") String username, @RequestParam("password") String password,
+	public String add( @RequestParam("password") String password,
 			@RequestParam("email") String email, @RequestParam("phone") String phone,
 			@RequestParam("realname") String realname,@RequestParam("workspace") String workspace){
 		class MyThread extends Thread {  
@@ -44,11 +45,12 @@ public class LandingController {
 			} 
 		}
 //		获取提交的表单数据并传入到数据库中，并返回注册成功界面
-		UserBean u=new UserBean(username,password,email,phone,realname,workspace);
-		UserOperating c=new UserOperating();		
-		c.executeADD(u.getUsername(),u.getPassword(), u.getEmail(), u.getPhone(),u.getRealname(),u.getWorkspace());
+		UserBean u=new UserBean(password,email,phone,realname,workspace);
+		UserOperating c=new UserOperating();
+		c.executeADD(u.getPassword(), u.getEmail(), u.getPhone(),u.getRealname(),u.getWorkspace());
 		MyThread myThread1 = new MyThread();  
-		myThread1.start();  
+		myThread1.start(); 
+		MailServer.sendStatusMail(u.getEmail());
 		return "registersuccess";
 	}
 	
@@ -58,22 +60,23 @@ public class LandingController {
 	 * @return
 	 */
 	@RequestMapping("/CheckName")
-	public String check(@RequestParam("username") String name){
+	public void check(@RequestParam("email") String name, HttpServletResponse response){
 		//判断用户名是否存在，若是则返回错误信息
 		UserOperating c = new UserOperating();
 		ResultSet result = c.select();
 		try {
 			while(result.next()){
 				if(name.equals(result.getString(2))){
-					 return "false";
+					response.getWriter().print("false");
 				}else{
 					continue;
 				}
 			}
-		} catch (SQLException e) {
+			response.getWriter().print("true");
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
-		return "true";
+		
 	}
 	
 	/**
@@ -84,20 +87,20 @@ public class LandingController {
 	 * @return
 	 */
 	@RequestMapping("/sign")
-    public String Check(HttpServletRequest request,@RequestParam("username") String username, @RequestParam("password") String password){	
+    public String Check(HttpServletRequest request,@RequestParam("email") String username, @RequestParam("password") String password){	
 		//获取并检查用户密码是否正确
 		UserOperating c = new UserOperating();
-		System.out.println(username+password);
 		ResultSet result = c.select();			
 		try {
 			while (result.next()) {
-				if (username.equals(result.getString("username")) && password.equals(result.getString("password"))) {
-					request.getSession().setAttribute("username",result.getString(2));
+				if (username.equals(result.getString("email")) && password.equals(result.getString("password"))) {
+					request.getSession().setAttribute("email",result.getString("email"));
+					request.getSession().setAttribute("realname",result.getString("realname"));
 					return "forward:index.jsp";
 				} else {
 					continue;
 				}
-			}			
+			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -106,10 +109,14 @@ public class LandingController {
 		return "login";
     }
 
-	
+	/**
+	 * 注销登陆
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping("/logout")
 	public void logout(HttpServletRequest request,HttpServletResponse response){		
-		request.getSession().setAttribute("username",null);
+		request.getSession().setAttribute("realname",null);
 		try {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (ServletException e) {

@@ -93,7 +93,7 @@ public class SearchOperating {
 			// 从输入中读入搜索请求，然后对它进行解析，最后创建一个Lucene中的Query对象。
 			ArrayList<ArticleModel> result = null;
 			try {
-				result = LuceneOperating.getResult("Title", querystr);
+				result = LuceneOperating.getResult("Title", querystr,30);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ParseException e) {

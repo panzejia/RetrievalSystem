@@ -24,10 +24,10 @@ public class AdminOperating {
 			ResultSet result =stmt.executeQuery("SELECT * FROM userinformation");
 			UserBean ub = null;
 			while(result.next()){
-				System.out.println(result.getString("username"));
-				ub = new UserBean(result.getString("username"),result.getString("password"),
+				ub = new UserBean(result.getString("password"),
 						result.getString("email"),result.getString("phone"),
 						result.getString("realname"),result.getString("workspace"));
+				ub.setUserId(result.getString("id"));
 				users.add(ub);
 			}
 		} catch (SQLException e) {

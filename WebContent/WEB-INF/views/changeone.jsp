@@ -16,20 +16,18 @@
 $().ready(function() {
     $("#login").validate({
     	rules:{
+    		username:{
+    			required:true   			
+    		},
+    		realname:{
+    			required:true
+
+    		},
     		email:{
-    			required:true,
-    			email:true
+    			required:true
     		},
-    		phone:{
-    			required:true,
-    			minlength:11
-    		},
-    		password:{
-    			required:true,
-    			minlength:6
-    		},
-    		repeatpassword:{
-    			equalTo:"#password"
+    		Workspace:{
+    			required:true
     			
     		}
     	},
@@ -37,22 +35,16 @@ $().ready(function() {
     	messages:{
     		username:{
     			required:" * 用户名不能为空！",
-    			remote: "用户名已存在！"
+    		},
+    		realname:{
+    			required:" * 真实姓名不能为空！"
     		},
     		email:{
-    			required:" * 邮箱地址不能为空！"
+    			required:" * 邮箱地址不能为空！",
     		},
-    		phone:{
-    			required:" * 手机号码不能为空！",
-    			minlength: $.format(" * 手机号长度不得小于11位！")
-    		},
-    		password:{
-    			required:" * 用户密码不能为空！",
-    			minlength: $.format(" * 密码长度不得小于6位！")
-    		},
-    		repeatpassword:{
-    			equalTo:" * 两次密码输入不一致！"
-    		}
+    		Workspace:{
+    			required:" * 工作单位不能为空！",
+    		},    		
     	}
     });
 });
@@ -95,38 +87,32 @@ $().ready(function() {
 
 <hr>
 <div class="container">
-    <form name="regForm" id="login" action="personalchange" method="post">
+    <form name="regForm" id="login" action="adminchange" method="post">
         <div class="form-group">
-                <h3><%=session.getAttribute("realname") %>，欢迎回来修改你的信息</h3>
+                <h3>修改信息</h3>
         </div>
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon">密码</span>
-                <input type="password" class="form-control" name="password" id="password" placeholder="密码" />
-            </div>
-        </div>
+        <input type="text" name="id" id="id" value="${user.getUserId()}" style="visibility:hidden" />    
 		<div class="form-group">
             <div class="input-group"style="margin: 0 auto;">
-                <span class="input-group-addon">确认密码</span>
-                <input type="password" id="repeatpassword" name="repeatpassword" class="form-control" placeholder="确认密码" />
+                <span class="input-group-addon">真实姓名</span>
+                <input type="text" id="realname" name="realname" class="form-control" value="${user.getRealname()}" placeholder="真实姓名" />
             </div>
         </div>
 		<div class="form-group">
             <div class="input-group"style="margin: 0 auto;">
                 <span class="input-group-addon">邮箱</span>
-                <input type="text" id="email" name="email" class="form-control" value="${requestScope.email}" placeholder="电子邮箱" />
+                <input type="text" id="email" name="email" class="form-control" value="${user.getEmail()}" placeholder="电子邮箱" />
             </div>
         </div>
 
 		<div class="form-group">
             <div class="input-group" >
-                <span class="input-group-addon">手机</span>
-                <input type="text" id="phone"   name="phone" class="form-control" value="${requestScope.phone}" placeholder="手机" />
+                <span class="input-group-addon">工作单位</span>
+                <input type="text" id="Workspace"   name="Workspace" class="form-control" value="${user.getWorkspace()}" placeholder="工作单位" />
             </div>
         </div>
         <div class="form-group" >
              <input class="btn btn-primary form-control" style="margin: 0 auto;" type="submit" value="提交"/>
-             <a href="personal">返回个人信息</a>
         </div>
     </form>
 	</div>

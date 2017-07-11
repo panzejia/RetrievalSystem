@@ -28,10 +28,10 @@
 	</div>
 	<div class="resultArea">
 		<div class="result">
-			<h2>尊敬的${requestScope.username}，欢迎回来</h2>
+			<h2>尊敬的${requestScope.realname}，欢迎回来</h2>
 			<p>邮箱地址：${requestScope.email}</p>
+			${requestScope.status}
 			<p>联系电话：${requestScope.phone}</p>
-			<p>真实姓名：${requestScope.realname}</p>
 			<p>工作单位：${requestScope.workspace}</p>
 		</div>
 		<div class="result" style="margin-top:150px;">

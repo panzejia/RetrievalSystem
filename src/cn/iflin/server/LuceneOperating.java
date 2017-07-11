@@ -54,7 +54,6 @@ public class LuceneOperating {
 		Directory fileindex;
 		fileindex = FSDirectory.open(new File("D:\\LuceneIndexTest"));
 		IndexWriter filew=new IndexWriter(fileindex, configfile);
-		System.out.println(fileindex);
 		String text = "秋夜带给我的凄凉是任何喧闹都无法覆盖的。餐厅里生意很好，老板、服务员们和我都很熟悉，就像我对秋天一样的熟悉与敏感。突然我觉得这家餐厅就像我的家，它像家人一样在为我准备着晚餐，那个嘎小子服务员总是对着我笑。顺着这个突如其来的怪想法，我跳了出来：我坐在旁边的椅子上看着那个正在端着酒杯流泪的男人，不知道该和他说些什么，我能理解他的悲伤，却无法为他清唱一支歌。我为自己起了个新名字，那是从母亲的名字延续而来的。“米尔”！这名字把我和母亲绑在一起。然而我又很讨厌这名字，它提醒着我，催促我走出那片时光乐土。我为这个餐厅也起了新名字“吉母餐厅”，因为在这里吃饭是要付钱的，所以“吉母”变成“吉姆”。";
 		String id = "1";
 //		addDoc(filew, id , text);
@@ -154,7 +153,7 @@ public class LuceneOperating {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public static ArrayList<ArticleModel> getResult(String queryRange,String querystr)throws IOException, ParseException{
+	public static ArrayList<ArticleModel> getResult(String queryRange,String querystr,int hitsPerPage)throws IOException, ParseException{
 		ArrayList<ArticleModel> aticles;
 		Query q = null;
 		Analyzer analyzerIKA = new IKAnalyzer();
@@ -164,17 +163,15 @@ public class LuceneOperating {
 
 		// 3.搜索
 		// 创建一个Searcher对象并使用之前创建的Query对象来进行搜索，匹配到的前10个结果封装在TopScoreDocCollector对象里返回。
-		int hitsPerPage = 100;
 		IndexReader reader = DirectoryReader.open(fileindex);
 		IndexSearcher searcher = new IndexSearcher(reader);
-		
 		//把这里的number改为数据库中存储时间的列
 		Sort sort = new Sort(new SortField("Time", SortField.Type.STRING, true));
-		TopDocs topdocs = searcher.search(q, 30);	 
-		searcher.search(q, 30, sort);
+		TopDocs topdocs = searcher.search(q, hitsPerPage);	 
+		searcher.search(q, hitsPerPage, sort);
 		ScoreDoc[] hits = topdocs.scoreDocs;
 //		// 4.打印结果
-		 aticles = new ArrayList<ArticleModel>();
+		aticles = new ArrayList<ArticleModel>();
 		String title = null,time = null,context = null,url=null;
 		for (int i = 0; i < hits.length; ++i) {
 			int docId = hits[i].doc;

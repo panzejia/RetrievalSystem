@@ -24,17 +24,17 @@
     <form name="regForm" action="sign" method="post">
         <div class="form-group" style="text-align: center;">
             <h1 style="font-size: 2rem;">课题部落</h1>
-			<h2 style="font-size: 1.7rem;">登陆</h2>
+			<h2 style="font-size: 1.7rem;">登录</h2>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><span class="fa fa-user fa-fw"></span></span>
-                <input autocomplete="off" type="text" class="form-control" name="username" id="username" placeholder="用户名" />
+                <span class="input-group-addon">邮箱</span>
+                <input autocomplete="off" type="text" class="form-control" name="email" id="email" placeholder="邮箱" />
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><span class="fa fa-lock fa-fw"></span></span>
+                <span class="input-group-addon">密码</span>
                 <input  type="password" class="form-control" name="password" id="password" placeholder="密码" />
             </div>
         </div>
@@ -48,7 +48,7 @@
 </div>
 <script type="application/javascript">
     setTimeout(function() {
-        document.getElementById("username").focus();
+        document.getElementById("email").focus();
     }, 10);
 </script>
 <!--[if IE]>

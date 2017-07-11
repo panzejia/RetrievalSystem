@@ -26,7 +26,6 @@ import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import cn.iflin.model.ArticleModel;
-import cn.iflin.model.DBModel;
 import cn.iflin.model.MysqlConnection;
 /**
  * 1.放置首页数据
@@ -36,21 +35,23 @@ import cn.iflin.model.MysqlConnection;
  *
  */
 public class GetArticles {
-	public   ArrayList<DBModel> getArticle(){
+	/**
+	 * 1.主页数据
+	 * @return
+	 */
+	public   ArrayList<ArticleModel> getArticle(){
 		Connection conn = MysqlConnection.getConnection();
 		//通过数据的连接操作数据库
 		Statement stmt;
-		ArrayList<DBModel> article = new ArrayList<DBModel>();
+		ArrayList<ArticleModel> article = new ArrayList<ArticleModel>();
 		try {
 			stmt = conn.createStatement();
 			ResultSet result =stmt.executeQuery("SELECT * FROM context  ORDER BY Time DESC limit 3");
-			DBModel db = null;
+			ArticleModel db = null;
 			while(result.next()){
-				db = new DBModel();
-				db.setArticleTtile(result.getString("Title"));
-				db.setArticleTime(result.getString("Time"));
-				db.setArticleText(result.getString("ContextNoCode").substring(0,100));
-				db.setArticleId(result.getString("AticleId"));
+				db=new ArticleModel(result.getString("Title"),result.getString("Time"),
+						result.getString("ContextNoCode").substring(0,100),
+						result.getString("AticleId"),result.getString("Source"));
 				article.add(db);
 			}
 		} catch (SQLException e) {
@@ -64,21 +65,19 @@ public class GetArticles {
 	 * 2.查看最新文章
 	 * @return
 	 */
-	public static  ArrayList<DBModel> getArticles(){
+	public static  ArrayList<ArticleModel> getArticles(){
 		Connection conn = MysqlConnection.getConnection();
 		//通过数据的连接操作数据库
 		Statement stmt;
-		ArrayList<DBModel> article = new ArrayList<DBModel>();
+		ArrayList<ArticleModel> article = new ArrayList<ArticleModel>();
 		try {
 			stmt = conn.createStatement();
 			ResultSet result =stmt.executeQuery("SELECT * FROM context  ORDER BY Time DESC limit 30");
-			DBModel db = null;
+			ArticleModel db = null;
 			while(result.next()){
-				db = new DBModel();
-				db.setArticleTtile(result.getString("Title"));
-				db.setArticleTime(result.getString("Time"));
-				db.setArticleId(result.getString("AticleId"));
-				db.setArticleSource(result.getString("Source"));
+				db=new ArticleModel(result.getString("Title"),result.getString("Time"),
+						result.getString("ContextNoCode"),
+						result.getString("AticleId"),result.getString("Source"));
 				article.add(db);
 			}
 		} catch (SQLException e) {
@@ -96,7 +95,7 @@ public class GetArticles {
 	public static  ArrayList<ArticleModel> getBestArticles(String querystr)  {
 		ArrayList<ArticleModel> result = null;
 		try {
-			result = LuceneOperating.getResult("Context", querystr);
+			result = LuceneOperating.getResult("Context", querystr,15);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
