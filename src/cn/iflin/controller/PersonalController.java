@@ -45,13 +45,17 @@ public class PersonalController {
 			map.put("realname", realname);
 			break;
 		}
-		if(email.equals("admin")){
+		if(email.equals("panzejia")){
 			return "forward:/adminPage";
 		}
-		if(info==""){
+		if(info==null){
 			GetArticles artile = new GetArticles();
 	    	model.addAttribute("articles", artile.getArticle());
-		}else{
+		}else if(info.equals("")){
+			GetArticles artile = new GetArticles();
+	    	model.addAttribute("articles", artile.getArticle());
+		}
+		else{
 			model.addAttribute("articles", GetArticles.getBestArticles(info));
 		}
 		return "personal";

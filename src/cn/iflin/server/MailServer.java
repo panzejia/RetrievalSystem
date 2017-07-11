@@ -79,7 +79,7 @@ public class MailServer {
         // 4. Subject: 邮件主题
         message.setSubject("课题部落激活", "UTF-8");
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setContent("<h2><a href=\"http://172.28.23.74:8080/RetrievalSystemV1/changestatus?email="
+        message.setContent("<h2><a href=\"http://ktbl.iflin.cn/rs2/changestatus?email="
         			+receiveMail+"&st=1\">课题部落激活</a></h2>", "text/html;charset=UTF-8");
         // 6. 设置发件时间
         message.setSentDate(new Date());

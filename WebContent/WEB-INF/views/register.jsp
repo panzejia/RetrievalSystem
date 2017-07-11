@@ -15,18 +15,6 @@
 $().ready(function() {
     $("#login").validate({
     	rules:{
-    		email:{
-    			required:true,
-    			remote:{
-    				type:"POST",
-    	               url:"CheckName",             
-    	               dataType: "json",
-    	               data:{
-    	                 username:function(){return $("#email").val();}
-    	               } 
-    			},
-    			email:true
-    		},
     		phone:{
     			required:true,
     			minlength:11
