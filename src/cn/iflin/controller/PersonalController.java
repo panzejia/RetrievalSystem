@@ -45,7 +45,7 @@ public class PersonalController {
 			map.put("realname", realname);
 			break;
 		}
-		if(email.equals("panzejia")){
+		if(email.equals("panzejia")||email.equals("admin")){
 			return "forward:/adminPage";
 		}
 		if(info==null){
@@ -58,14 +58,14 @@ public class PersonalController {
 		else{
 			model.addAttribute("articles", GetArticles.getBestArticles(info));
 		}
-		return "personal";
+		return "person/personal";
 	}
 	/**
 	 * 修改用户信息
 	 */
 	@RequestMapping("/change")
 	public String change(){
-		return "changeinfo";
+		return "person/changeinfo";
 	}
 	@RequestMapping("/personalchange")
 	public String personalchange(HttpServletRequest request, @RequestParam("phone") String phone, @RequestParam("password") String password,@RequestParam("workspace") String workspace){
@@ -81,6 +81,6 @@ public class PersonalController {
 	@RequestMapping(value="/changestatus",method=RequestMethod.GET)
     public String changeStatus( @RequestParam("email") String email,@RequestParam("st") String status,Model model) { // user:视图层传给控制层的表单对象；model：控制层返回给视图层的对象
 		UserOperating.statusUpdate(email,status);
-        return "statussuccess";
+        return "person/statussuccess";
     }
 }

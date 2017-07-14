@@ -1,0 +1,116 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Century Gothic","Microsoft yahei";
+}
+body, div, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, iframe, table, tr{
+	margin: 0;
+    padding: 0;
+}
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+li{
+	padding:5px;
+	border-bottom:1px solid #00688B;
+}
+.top {
+    height: 30px;
+    background: #F7F7F7;
+    border-bottom: 1px solid #E0E0E0;
+    width: 100%;
+    min-width: 100%;
+    box-shadow: 0 1px 2px #E2EBF4;
+}
+.topli{
+	margin: 2px;
+	padding: 2px;
+	float:right;
+	list-style:none;
+	text-align:center;
+}
+.idxlogo {
+    position: relative;
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    
+}
+.resultArea {
+	padding: 30px;
+	margin:0 auto; 
+	background: #F7F7F7;
+    border-bottom: 1px solid #E0E0E0;
+    box-shadow: 0 1px 2px #E2EBF4;
+	height:800px;
+}
+.pic{
+    text-align:center;
+ }
+
+/**从这里开始是左边区域*/
+.resultleft {
+	overflow:auto;
+	width:193.2px;float:left;
+	height:800px;
+	text-align:center;
+	 border:1px solid #96c2f1;background:#eff7ff
+}
+.resultlefttop{
+	height:30px;
+	font-size: 16px;
+	background: #F7F7F7;
+	border-bottom: 1px solid #00688B;
+}
+
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+width:12px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+border-radius:10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+border-radius:10px;
+background:#87CEFF;
+-webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background:#87CEFF;
+}
+
+/*从这里开始是右边区域*/
+.resultright {
+	overflow:auto;
+	width:702px;float:left;
+	height:800px;
+}
+.resultrightcenter{
+	text-align:center;
+	width:700px;
+	margin:10px auto; 
+}
+.searchinput {
+    width:300px;
+	height:26px;
+	margin:10px 0px; 
+}
+.inputbutton{
+	width:100px;
+	height:23px;
+	background:#eff7ff; 
+	border:1px solid #96c2f1;
+	color:#428bca;
+	font-size:14px; 
+	font-family: "Century Gothic","Microsoft yahei";
+} 
+.textarea{
+	margin:0 auto; 
+	width:500px;
+}

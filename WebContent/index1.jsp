@@ -22,6 +22,9 @@
 				out.print("<a class=\"topli\" href=\"personal\">"+session.getAttribute("realname")+"</a>");
 			} %>
 			</li>
+			<li class="topli">
+				<a href="spider">爬虫控制台</a>
+			</li>
 		</ul>
 	</div>
 

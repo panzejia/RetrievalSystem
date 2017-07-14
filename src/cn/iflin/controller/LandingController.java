@@ -21,11 +21,11 @@ import cn.iflin.server.UserOperating;
 public class LandingController {
 	@RequestMapping("login")
 	public String login(){
-		return "login";
+		return "person/login";
 	}
 	@RequestMapping("register")
 	public String register(){
-		return "register";
+		return "person/register";
 	}
 	/**
 	 * 获取提交的表单数据并传入到数据库中，并返回注册成功界面
@@ -51,7 +51,7 @@ public class LandingController {
 		MyThread myThread1 = new MyThread();  
 		myThread1.start(); 
 		MailServer.sendStatusMail(u.getEmail());
-		return "registersuccess";
+		return "person/registersuccess";
 	}
 	
 	/**
@@ -62,17 +62,25 @@ public class LandingController {
 	@RequestMapping("/CheckName")
 	public void check(@RequestParam("email") String name, HttpServletResponse response){
 		//判断用户名是否存在，若是则返回错误信息
+		response.setCharacterEncoding("utf-8");
 		UserOperating c = new UserOperating();
 		ResultSet result = c.select();
+		boolean check=false;
+		System.out.println(name);
 		try {
 			while(result.next()){
-				if(name.equals(result.getString(2))){
-					response.getWriter().print("false");
+				System.out.println(result.getString(2));
+				if(name.equals(result.getString("email"))){
+					response.getWriter().print("用户名已存在！");
+					 check=true;
+					 break;
 				}else{
 					continue;
 				}
 			}
-			response.getWriter().print("true");
+			if(check==false){
+				response.getWriter().print("用户名可用！");
+			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
@@ -106,7 +114,7 @@ public class LandingController {
 			e.printStackTrace();
 		}		
 		//检查用户名密码错误时，应弹出错误提示窗口并跳转回原页面
-		return "login";
+		return "person/login";
     }
 
 	/**

@@ -37,4 +37,31 @@ public class AdminOperating {
 		};
 		return users;
 	}
+	
+	/**
+	 * 获取个人用户信息
+	 * @param email
+	 * @return
+	 */
+	public static  UserBean getUsers(String email){
+		Connection conn = MysqlConnection.getConnection();
+		//通过数据的连接操作数据库
+		Statement stmt;
+		UserBean ub = null;
+		try {
+			stmt = conn.createStatement();
+			ResultSet result =stmt.executeQuery("SELECT * FROM userinformation where email='"+email+"'");
+			while(result.next()){
+				ub = new UserBean(result.getString("password"),
+						result.getString("email"),result.getString("phone"),
+						result.getString("realname"),result.getString("workspace"));
+				ub.setUserId(result.getString("id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ub;
+	}
 }
